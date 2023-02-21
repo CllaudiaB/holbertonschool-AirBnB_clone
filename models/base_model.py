@@ -20,6 +20,9 @@ class BaseModel:
                     self.created_at = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                 if key == "updated_at":
                     self.updated_at = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    self.created_at = datetime.now()
+                if key == "updated_at":
+                    self.updated_at = datetime.now()
                 if key == "my_number":
                     self.my_number = value
                 if key == "name":
