@@ -1,11 +1,10 @@
 #!/usr/bin/python3
-import cmd
 """Created class"""
+import cmd
 
 
 class HBNBCommand(cmd.Cmd):
-    """
-    Created a class that contains the entry point of the command interpreter
+    """Created a class that contains the entry point of the command interpreter
     """
     prompt = '(hbnb)'
 
@@ -21,8 +20,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def emptyline(self):
-        """
-        Passed an empty line when ENTER
+        """Passed an empty line when ENTER
         """
         pass
 
