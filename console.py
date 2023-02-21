@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 import cmd
 
-"""
-Created class
-"""
+"""Created class"""
+
 class HBNBCommand(cmd.Cmd):
     """
     Created a class that contains the entry point of the command interpreter
