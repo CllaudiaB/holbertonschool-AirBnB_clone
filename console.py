@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import cmd
-
 """Created class"""
+
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -25,6 +25,7 @@ class HBNBCommand(cmd.Cmd):
         Passed an empty line when ENTER
         """
         pass
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
