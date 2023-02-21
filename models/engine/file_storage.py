@@ -3,7 +3,7 @@
     Module that defines a new class: FileStorage
 """
 
-from models import base_model
+from models.base_model import BaseModel
 import json
 
 
