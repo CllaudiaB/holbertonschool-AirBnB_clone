@@ -2,11 +2,11 @@
 import cmd
 
 """
-Class
+Created class
 """
 class HBNBCommand(cmd.Cmd):
     """
-    Created class HBNBCommand(cmd.Cmd)
+    Created a class that contains the entry point of the command interpreter
     """
     prompt = '(hbnb)'
 
