@@ -6,53 +6,48 @@
 import json
 import os.path
 
+
+import json
+
 class FileStorage:
     """
-        Module that serializes instances to a a JSON
-        file and desearializez JSON file to instances
+    serializes instances to a JSON file and deserializes JSON file to instances
     """
-
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
-        """ 
-            Returns the dictionary of __objects
-            <ob class name>.id
         """
+        returns the dictionary __objects
+        """
+        return self.__objects
 
-        return FileStorage.__objects
-    
     def new(self, obj):
         """
-            sets in __objects the obj with key 
+        sets in __objects the obj with key <obj class name>.id
         """
-
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.__objects[key] = obj
 
     def save(self):
         """
-            Sets in __objects to the JSON file
-            (path: __file_path)
+        serializes __objects to the JSON file (path: __file_path)
         """
-
-        obj_dict = {}
-        for key, obj in self.__objects.items():
-            obj_dict[key] = obj.to_dict()
-        with open(self.__file_path, "w") as file:
-            json.dump(obj_dict, file)
+        new_dict = {}
+        for key, value in self.__objects.items():
+            new_dict[key] = value.to_dict()
+        with open(self.__file_path, mode="a", encoding="utf-8") as json_file:
+            json.dump(new_dict, json_file)
 
     def reload(self):
         """
-            Deserializes the JSON file to __objects
+        deserializes the JSON file to __objects
         """
-
-        if os.path.isfile(self.__file_path):
-            with open(self.__file_path, "r") as file:
-                obj_dict = json.load(file)
-                for key, obj_data in obj_dict.items():
-                    cls_name, obj_id = key.split(".")
-                    cls = eval(cls_name)
-                    obj = cls(**obj_data)
-                    self.__objects[key] = obj
+        try:
+            with open(self.__file_path, mode="r", encoding="utf-8") as json_file:
+                new_dict = json.load(json_file)
+                for key, value in new_dict.items():
+                    class_name, obj_id = key.split('.')
+                    self.__objects[key] = eval(class_name)(**value)
+        except:
+            pass
