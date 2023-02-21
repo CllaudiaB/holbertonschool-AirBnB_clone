@@ -17,9 +17,9 @@ class BaseModel:
                 if key == "id":
                     self.id = value
                 if key == "created_at":
-                    self.created_at = value
+                    self.created_at = datetime.now()
                 if key == "updated_at":
-                    self.updated_at = value
+                    self.updated_at = datetime.now()
                 if key == "my_number":
                     self.my_number = value
                 if key == "name":
