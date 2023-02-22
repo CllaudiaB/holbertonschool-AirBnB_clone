@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """Created class"""
 import cmd
-import sys
+import models
+from models import storage
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 
@@ -12,12 +13,12 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb)'
     class_name = ["BaseModel"]
 
-    def do_EOF(self, arg):
+    def do_EOF(self, line):
         """EOF command to exit the program
         """
         return True
 
-    def do_quit(self, arg):
+    def do_quit(self, line):
         """Quit command to exit the program
         """
         return True
@@ -27,31 +28,37 @@ class HBNBCommand(cmd.Cmd):
         """
         pass
 
-    def do_create(self, arg):
+    def do_create(self, line):
         """create a new instance of BaseModel"""
-        if len(arg) == 0:
+        if len(line) == 0:
             print("** class name missing **")
-        elif arg not in self.class_name:
+        elif line not in self.class_name:
             print("** class doesn't exist **")
         else:
-            instance = eval(arg)()
+            instance = eval(line)()
             instance.save()
             print(instance.id)
 
-    """def do_destroy(self, arg):
-        Deletes an instance based on the class name and id
-        
-        arg = line.split(" ")
-        if arg == 0:
+    def do_show(self, line):
+        """Prints the string representation of an instance based on the\
+        class name and id
+        """
+        if len(line) == 0:
             print("** class name missing **")
-        elif arg[1] is not class_name:
-            print("** class doesn't exist **")
-        elif arg < 2:
-            print("** instance id missing **")
-        elif 
-            print("** no instance found **")
         else:
-            del"""
+            arg = line.split(" ")
+            if arg[0] not in self.class_name:
+                print("** class doesn't exist **")
+            elif len(arg) == 1:
+                print("** instance id missing **")
+            else:
+                storage = FileStorage()
+                objects = storage.all()
+                key = "{}.{}".format(arg[0], arg[1])
+                if key not in objects.keys():
+                    print("** no instance found **")
+                else:
+                    print(objects[key])
 
 
 if __name__ == '__main__':
