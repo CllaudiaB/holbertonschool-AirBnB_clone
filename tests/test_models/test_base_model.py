@@ -8,7 +8,7 @@ import unittest
 from datetime import datetime
 
 
-    class Test_BaseModel(unittest.TestCase):
+class Test_BaseModel(unittest.TestCase):
     """
     A class to tests BaseModel
     """
