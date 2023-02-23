@@ -24,7 +24,7 @@ class FileStorage:
         """
         returns the dictionary __objects
         """
-        return self.__objects
+        return FileStorage.__objects
 
     def new(self, obj):
         """
