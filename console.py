@@ -5,13 +5,14 @@ import models
 from models import storage
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
     """Created a class that contains the entry point of the command interpreter
     """
     prompt = '(hbnb)'
-    class_name = ["BaseModel"]
+    class_name = ["BaseModel", "User"]
 
     def do_EOF(self, line):
         """EOF command to exit the program

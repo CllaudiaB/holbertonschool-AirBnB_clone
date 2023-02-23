@@ -4,6 +4,7 @@
 """
 
 from models.base_model import BaseModel
+from models.user import User
 import json
 
 
@@ -26,6 +27,7 @@ class FileStorage:
         """
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.__objects[key] = obj
+
 
     def save(self):
         """
