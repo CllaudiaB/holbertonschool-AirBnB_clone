@@ -4,7 +4,28 @@
 
 <h1 align="center">HolbertonBnB</h1>
 <p align="center">An AirBnB clone.</p>
----
+
+`Storage engine -> Json file.`
+`Console -> cmd with python library cmd.Cmd`
+
+# Description of the project
+
+This is the first part of the project that simulates an airbnb application in which we are creating a way to control the modules that our web page is going to use by intervening a database in json format. Here we apply object oriented programming, python data translation and command interpreted logic to deliver a local database that can be modified by commands.
+
+# Prerequisites 
+
+Python3.4+ has to be installed if you desire to use the console:
+```
+sudo apt-get install python3
+```
+
+# Installation
+
+To have access to the console use the following command:
+
+```
+git clone https://github.com/CllaudiaB/holbertonschool-AirBnB_clone.git; cd holbertonschool-AirBnB
+```
 
 ## Description :house:
 
