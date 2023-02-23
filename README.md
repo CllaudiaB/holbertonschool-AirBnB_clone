@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="https://github.com/CllaudiaB/holbertonschool-AirBnB_clone/blob/master//hbnb_logo.png" alt="HolbertonBnB logo">
+</p>
+
+<h1 align="center">HolbertonBnB</h1>
+<p align="center">An AirBnB clone.</p>
 ---
 
 ## Description :house:
@@ -270,5 +276,5 @@ $ python3 unittest -m tests/test_console.py
 
 # Authors :black_nib:
 * **Claudia Bura** <[CllaudiaB](https://github.com/CllaudiaB)>
-* **Anne-Laure Guilloux ** <[annlaure02](https://github.com/annelaure02)>
+* **Anne-Laure Guilloux** <[annlaure02](https://github.com/annelaure02)>
 * **Dinu Mira** <[EXTRADEEN](https://github.com/EXTRADEEN)>
