@@ -1,18 +1,23 @@
 #!/usr/bin/python3
 """Created class"""
 import cmd
-import models
 from models import storage
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
     """Created a class that contains the entry point of the command interpreter
     """
     prompt = '(hbnb)'
-    class_name = ["BaseModel", "User"]
+    class_name = ["BaseModel", "User", "State", "City", "Amenity", "Place",
+                  "Review"]
 
     def do_EOF(self, line):
         """EOF command to exit the program
