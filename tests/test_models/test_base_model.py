@@ -1,44 +1,59 @@
 #!/usr/bin/python3
-"""
-Module that tests differents
-behaviors of the BaseModel class
-"""
+""" unit tests for BaseModel class """
 from models.base_model import BaseModel
 import unittest
-from datetime import datetime
+import datetime
+from uuid import UUID
+import json
+import os
 
 
-class Test_BaseModel(unittest.TestCase):
-    """
-    A class to tests BaseModel
-    """
+class test_basemodel(unittest.TestCase):
+    """Unit tests suit for BaseModel """
 
-    def test_init(self):
-        """ Tests init
-        """
-        model = BaseModel()
-        model.id = '667a709e-c2e8-4dd4-aed0-4cb97e9bcb20'
-        self.assertEqual(model.id, '667a709e-c2e8-4dd4-aed0-4cb97e9bcb20')
-
-        model.created_at = "datetime.datetime(2023, 2, 23, 1, 48, 35, 129484)"
-        self.assertEqual(model.created_at,
-                         "datetime.datetime(2023, 2, 23, 1, 48, 35, 129484)")
-
-        model.updated_at = "datetime.datetime(2023, 2, 23, 1, 48, 35, 129484)"
-        self.assertEqual(model.updated_at,
-                         "datetime.datetime(2023, 2, 23, 1, 48, 35, 129484)")
+    def __init__(self, *args, **kwargs):
+        """ """
+        super().__init__(*args, **kwargs)
+        self.name = 'BaseModel'
+        self.value = BaseModel
 
     def test_save(self):
-        """ Test method save updates the public instance attribute """
-        model = BaseModel()
-        update = model.updated_at
-        model.save()
-        self.assertNotEqual(update, model.updated_at)
+        """ Testing save """
+        i = self.value()
+        i.save()
+        key = self.name + "." + i.id
+        with open('file.json', 'r') as f:
+            j = json.load(f)
+            self.assertEqual(j[key], i.to_dict())
+
+    def test_str(self):
+        """ """
+        i = self.value()
+        self.assertEqual(str(i), '[{}] ({}) {}'.format(self.name, i.id,
+                         i.__dict__))
 
     def test_to_dict(self):
-        """Test method to_dict"""
-        model = BaseModel()
-        newdict = model.to_dict()
-        self.assertIsInstance(newdict, dict)
-        self.assertTrue("__class__" in newdict)
-        self.assertIn('created_at', self.model.to_dict())
+        """
+        Tests that to_dict:
+            - returns a dictionary
+            - that contains all keys/values of __dict__
+            - contains __class__ and that this __class__ is the class name
+        """
+        base = BaseModel()
+
+        "Returns a dictionary"
+        returned_dict = base.to_dict()
+        self.assertIsInstance(returned_dict, dict)
+
+        "Dictionary contains __class__, which is the class name"
+        self.assertTrue("__class__" in returned_dict)
+        self.assertEqual(returned_dict["__class__"], type(base).__name__)
+
+    def test_id(self):
+        """ """
+        new = self.value()
+        self.assertEqual(type(new.id), str)
+
+
+if __name__ == '__main__':
+    unittest.main()
