@@ -18,7 +18,7 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb)'
     class_name = ["BaseModel", "User", "State", "City", "Amenity", "Place",
                   "Review"]
-    
+
     list_function = ['create', 'show', 'update', 'all', 'destroy', 'count']
 
     def precmd(self, arg):
@@ -31,7 +31,6 @@ class HBNBCommand(cmd.Cmd):
                my_func[0] in HBNBCommand.list_function:
                 arg = my_func[0] + ' ' + my_class[0] + ' ' + param[0]
         return arg
-
 
     def do_EOF(self, line):
         """EOF command to exit the program
@@ -109,7 +108,8 @@ class HBNBCommand(cmd.Cmd):
             return
 
         if line in self.class_name:
-            print([str(obj) for obj in objs.values() if type(obj).__name__ == line])
+            print([str(obj) for obj in objs.values() if
+                   type(obj).__name__ == line])
         else:
             print([str(obj) for obj in objs.values()])
 
