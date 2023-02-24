@@ -18,6 +18,20 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb)'
     class_name = ["BaseModel", "User", "State", "City", "Amenity", "Place",
                   "Review"]
+    
+    list_function = ['create', 'show', 'update', 'all', 'destroy', 'count']
+
+    def precmd(self, arg):
+        """parses command input"""
+        if '.' in arg and '(' in arg and ')' in arg:
+            my_class = arg.split('.')
+            my_func = my_class[1].split('(')
+            param = my_func[1].split(')')
+            if my_class[0] in HBNBCommand.class_name and \
+               my_func[0] in HBNBCommand.list_function:
+                arg = my_func[0] + ' ' + my_class[0] + ' ' + param[0]
+        return arg
+
 
     def do_EOF(self, line):
         """EOF command to exit the program
@@ -88,17 +102,16 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances based or not on
         the class name
         """
-
-        args = line.split()
-        objects = storage.all()
-
-        if len(args) == 0:
-            print([str(obj) for obj in objects.values()])
-        elif args[0] not in self.class_name:
-            print("** class doesn't exist **")
+        if not line or line in self.class_name:
+            objs = storage.all()
         else:
-            print([str(obj) for obj in objects.values()
-                   if type(obj).__name__ == args[0]])
+            print("** class doesn't exist **")
+            return
+
+        if line in self.class_name:
+            print([str(obj) for obj in objs.values() if type(obj).__name__ == line])
+        else:
+            print([str(obj) for obj in objs.values()])
 
     def do_update(self, line):
         """Updates an instance based on the class name and id
@@ -122,6 +135,16 @@ class HBNBCommand(cmd.Cmd):
             else:
                 setattr(objects[key], arg[2], arg[3])
                 storage.save()
+
+    def do_count(self, line):
+        """Count the number of instances of a class"""
+        count = 0
+        args = line.split(" ")
+        object = storage.all()
+        for v in object.values():
+            if v.__class__.__name__ == args[0]:
+                count += 1
+        print(count)
 
 
 if __name__ == '__main__':
