@@ -6,7 +6,7 @@ footer {
     bottom: 0;
     text-align: center;
 }
-div {
+footer div {
     display: flex;
     justify-content: center;
     align-items: center;
